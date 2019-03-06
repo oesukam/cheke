@@ -6,7 +6,7 @@ const cheke = ({ params, body, query, errors = 'errors' } = {}) => async (req, r
   if (params) {
     const failedParam = await hasErrors({
       data: req.params,
-      reqRules: params
+      reqRules: params,
     });
     if (failedParam) {
       return res.status(400).json({ [errors]: failedParam });

@@ -14,7 +14,7 @@ describe('hasErrors', () => {
   test('should return The age must be a number', () =>
     hasErrors({
       data: { age: '21' },
-      reqRules: { age: 'number' }
+      reqRules: { age: 'number' },
     }).then(res => {
       expect(res.age).toBe('The age must be a number.');
     }));
