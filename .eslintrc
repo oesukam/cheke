@@ -9,6 +9,26 @@
     "import/no-dynamic-require": 0,
     "global-require": 0,
     "consistent-return": 0,
-    "no-console": 0
+    "no-console": 0,
+    "object-curly-newline": ["error", { "multiline": true, "minProperties": 4 }],
+    "valid-jsdoc": [
+      "error",
+      {
+        "requireReturn": true,
+        "requireReturnType": true,
+        "requireParamDescription": false,
+        "requireReturnDescription": true
+      }
+    ],
+    "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true
+        }
+      }
+    ]
   }
 }
