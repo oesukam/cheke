@@ -1,7 +1,7 @@
 module.exports = {
-  required: "",
+  required: '',
   number: {
-    float: "",
-    integer: ""
-  }
+    float: '',
+    integer: '',
+  },
 };

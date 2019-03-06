@@ -7,20 +7,21 @@
     "test": "jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "lint": "node_modules/.bin/eslint .",
-    "dev": "nodemon  src/server/index.js  --exec 'npm run lint && node'"
+    "lint:fix": "prettier-eslint --write '**/*.js'"
   },
   "keywords": [],
   "author": "Olivier Esuka <olivier.esuka@andela.com> (https://oesukam.me)",
   "license": "ISC",
   "devDependencies": {
     "coveralls": "^3.0.3",
-    "eslint": "^5.15.0",
+    "eslint": "^4.18.2",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-prettier": "^3.0.1",
     "jest": "^24.1.0",
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "prettier-eslint-cli": "^4.7.1"
   },
   "dependencies": {
     "validator": "^10.11.0"
