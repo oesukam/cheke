@@ -1,6 +1,10 @@
 const number = require('../../src/validators/number');
 
 describe('number-validator', () => {
+  test('should return The undefined must be a number.', () => {
+    expect(number()).toBe('The undefined must be a number.');
+  });
+
   test('should return The username must be a number.', () => {
     expect(number({ value: 'not a number', label: 'age' })).toBe('The age must be a number.');
   });

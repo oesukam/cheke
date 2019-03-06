@@ -9,15 +9,15 @@ const hasErrors = ({ data = {}, reqRules } = {}) =>
       if (!reqRules[key]) reject(Error(`${key}'s rule can not be empty`));
       const rules = reqRules[key].split('|').map(rule => rule.trim());
       Object.keys(rules).forEach(k => {
-        const rule = rules[k];
+        const [rule, number] = rules[k].split(':');
         if (valids.indexOf(rule) === -1) {
           resolve({ [key]: `${rule} rule does not exist` });
         }
         if (!data[key] && rules.indexOf('required') !== -1) {
-          resolve({ [key]: validators.required({ value: data[key], label: key }) });
+          resolve({ [key]: validators.required({ value: data[key], label: key, max: number }) });
         }
 
-        const failed = validators[rule]({ value: data[key], label: key });
+        const failed = validators[rule]({ value: data[key], label: key, maxOrMin: number });
         if (failed) resolve({ [key]: failed });
       });
     });
