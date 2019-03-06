@@ -14,10 +14,10 @@ const hasErrors = ({ data = {}, reqRules } = {}) =>
           resolve({ [key]: `${rule} rule does not exist` });
         }
         if (!data[key] && rules.indexOf('required') !== -1) {
-          resolve({ [key]: validators.required(data[key], key) });
+          resolve({ [key]: validators.required({ value: data[key], label: key }) });
         }
 
-        const failed = validators[rule](data[key], key);
+        const failed = validators[rule]({ value: data[key], label: key });
         if (failed) resolve({ [key]: failed });
       });
     });

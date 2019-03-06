@@ -1,6 +1,6 @@
 const requiredMessage = require('../messages/requiredMessage');
 
-module.exports = (input, label) => {
-  if (input) return false;
+module.exports = ({ value, label } = {}) => {
+  if (value) return false;
   return requiredMessage(label);
 };

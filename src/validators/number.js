@@ -1,6 +1,6 @@
 const numberMessage = require('../messages/notNumberMessage');
 
-module.exports = (input, label) => {
-  if (typeof input === 'number') return false;
+module.exports = ({ value, label } = {}) => {
+  if (typeof value === 'number') return false;
   return numberMessage(label);
 };
