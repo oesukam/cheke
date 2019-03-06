@@ -14,14 +14,20 @@ const cheke = ({ params, body, query, errors = 'errors' } = {}) => async (req, r
   }
 
   if (body) {
-    const failedBody = await hasErrors({ data: req.body, reqRules: body });
+    const failedBody = await hasErrors({
+      data: req.body,
+      reqRules: body,
+    });
     if (failedBody) {
       return res.status(400).json({ [errors]: failedBody });
     }
   }
 
   if (query) {
-    const failedQuery = await hasErrors({ data: req.query, reqRules: query });
+    const failedQuery = await hasErrors({
+      data: req.query,
+      reqRules: query,
+    });
     if (failedQuery) {
       return res.status(400).json({ [errors]: failedQuery });
     }

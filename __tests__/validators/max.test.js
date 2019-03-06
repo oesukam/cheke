@@ -6,16 +6,26 @@ describe('max-validator', () => {
   });
 
   test('should return The year must not be greater than 2019.', () => {
-    expect(max({ value: 2020, label: 'year', maxOrMin: 2019 })).toBe(
-      'The year must not be greater than 2019.',
-    );
+    expect(max({
+        value: 2020,
+        label: 'year',
+        maxOrMin: 2019,
+      }),).toBe('The year must not be greater than 2019.');
   });
 
   test('should return false.', () => {
-    expect(max({ value: 2000, label: 'year', maxOrMin: 2019 })).toBe(false);
+    expect(max({
+        value: 2000,
+        label: 'year',
+        maxOrMin: 2019,
+      }),).toBe(false);
   });
 
   test('should return false.', () => {
-    expect(max({ value: 'usernameusername', label: 'username', maxOrMin: 20 })).toBe(false);
+    expect(max({
+        value: 'usernameusername',
+        label: 'username',
+        maxOrMin: 20,
+      }),).toBe(false);
   });
 });

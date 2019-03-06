@@ -6,14 +6,23 @@ describe('number-validator', () => {
   });
 
   test('should return The username must be a number.', () => {
-    expect(number({ value: 'not a number', label: 'age' })).toBe('The age must be a number.');
+    expect(number({
+        value: 'not a number',
+        label: 'age',
+      }),).toBe('The age must be a number.');
   });
 
   test('should return The age must be a number.', () => {
-    expect(number({ value: '21', label: 'age' })).toBe('The age must be a number.');
+    expect(number({
+        value: '21',
+        label: 'age',
+      }),).toBe('The age must be a number.');
   });
 
   test('should return false', () => {
-    expect(number({ value: 21, label: 'age' })).toBe(false);
+    expect(number({
+        value: 21,
+        label: 'age',
+      }),).toBe(false);
   });
 });

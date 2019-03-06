@@ -7,8 +7,6 @@ describe('above-max-message', () => {
   });
 
   test('should return The username must have less than or equal to 10 characters.', () => {
-    expect(maxString('username', 10)).toBe(
-      'The username must have less than or equal to 10 characters.',
-    );
+    expect(maxString('username', 10)).toBe('The username must have less than or equal to 10 characters.',);
   });
 });
