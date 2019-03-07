@@ -5,7 +5,7 @@ describe('number-validator', () => {
     expect(number()).toBe('The undefined must be a number.');
   });
 
-  test('should return The username must be a number.', () => {
+  test('should return The age must be a number.', () => {
     expect(number({
         value: 'not a number',
         label: 'age',
