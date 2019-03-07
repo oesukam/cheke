@@ -3,7 +3,7 @@ const minNumber = require('../../src/messages/belowMinNumberMessage');
 
 describe('above-max-message', () => {
   test('should return The page must be at least 100.', () => {
-    expect(minNumber('page', 100)).toBe('The page must be at least than 100.');
+    expect(minNumber('page', 100)).toBe('The page must be at least 100.');
   });
 
   test('should return The username must be at least characters.', () => {
