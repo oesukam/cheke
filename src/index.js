@@ -10,6 +10,7 @@ const cheke = (args = { errors: 'errors' }) => async (req, res, next) => {
       const failed = await hasErrors({
         data: req[value],
         reqRules: args[value],
+        path: value,
       });
       if (failed) {
         return res.status(400).json({ [args.arrors]: failed });
