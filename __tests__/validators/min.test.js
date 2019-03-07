@@ -9,7 +9,7 @@ describe('min-validator', () => {
     expect(min({
         value: 2018,
         label: 'year',
-        maxOrMin: 2019,
+        valid: 2019,
       }),).toBe('The year must be at least 2019.');
   });
 
@@ -17,7 +17,7 @@ describe('min-validator', () => {
     expect(min({
         value: 2020,
         label: 'year',
-        maxOrMin: 2019,
+        valid: 2019,
       }),).toBe(false);
   });
 
@@ -25,7 +25,7 @@ describe('min-validator', () => {
     expect(min({
         value: 'usernameusername',
         label: 'username',
-        maxOrMin: 6,
+        valid: 6,
       }),).toBe(false);
   });
 });
@@ -40,7 +40,7 @@ describe('max-validator', () => {
     expect(max({
         value: 2020,
         label: 'year',
-        maxOrMin: 2019,
+        valid: 2019,
       }),).toBe('The year must not be greater than 2019.');
   });
 
@@ -48,7 +48,7 @@ describe('max-validator', () => {
     expect(max({
         value: 2000,
         label: 'year',
-        maxOrMin: 2019,
+        valid: 2019,
       }),).toBe(false);
   });
 
@@ -56,7 +56,7 @@ describe('max-validator', () => {
     expect(max({
         value: 'usernameusername',
         label: 'username',
-        maxOrMin: 20,
+        valid: 20,
       }),).toBe(false);
   });
 });

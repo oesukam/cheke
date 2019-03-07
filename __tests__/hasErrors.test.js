@@ -13,7 +13,7 @@ describe('hasErrors', () => {
 
   test('should return The name field is required.', () =>
     hasErrors({ reqRules: { name: 'required' } }).then(res => {
-      expect(res.name).toBe('The name field is required.');
+      expect(res.name.message).toBe('The name field is required.');
     }));
 
   test('should return The age must be a number', () =>
@@ -21,7 +21,7 @@ describe('hasErrors', () => {
       data: { age: '21' },
       reqRules: { age: 'number' },
     }).then(res => {
-      expect(res.age).toBe('The age must be a number.');
+      expect(res.age.message).toBe('The age must be a number.');
     }));
 
   test('should return The age must be a number', () =>

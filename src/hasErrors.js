@@ -2,7 +2,7 @@ const validators = require('./validators');
 
 const valids = Object.keys(validators);
 
-const hasErrors = ({ data = {}, reqRules } = {}) =>
+const hasErrors = ({ data = {}, reqRules, path } = {}) =>
   new Promise((resolve, reject) => {
     if (!reqRules) resolve(false);
     Object.keys(reqRules).forEach(key => {
@@ -11,24 +11,27 @@ const hasErrors = ({ data = {}, reqRules } = {}) =>
       Object.keys(rules).forEach(k => {
         const [rule, number] = rules[k].split(':');
         if (valids.indexOf(rule) === -1) {
-          resolve({ [key]: `${rule} rule does not exist` });
+          resolve({ [key]: { path, message: `${rule} rule does not exist` } });
         }
         if (!data[key] && rules.indexOf('required') !== -1) {
           resolve({
-            [key]: validators.required({
-              value: data[key],
-              label: key,
-              max: number,
-            }),
+            [key]: {
+              path,
+              message: validators.required({
+                value: data[key],
+                label: key,
+                max: number,
+              }),
+            },
           });
         }
 
         const failed = validators[rule]({
           value: data[key],
           label: key,
-          maxOrMin: number,
+          valid: number,
         });
-        if (failed) resolve({ [key]: failed });
+        if (failed) resolve({ [key]: { path, message: failed } });
       });
     });
     resolve(false);
