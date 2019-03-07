@@ -1,6 +1,6 @@
 const notStringMessage = require('../messages/notStringMessage');
 
-module.exports = (input, label) => {
-  if (typeof input === 'string') return false;
+module.exports = ({ value, label } = {}) => {
+  if (typeof value === 'string') return false;
   return notStringMessage(label);
 };

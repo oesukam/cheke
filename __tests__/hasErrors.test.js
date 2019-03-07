@@ -11,6 +11,11 @@ describe('hasErrors', () => {
       expect(err.message).toBe("name's rule can not be empty");
     }));
 
+  test('should return The name field is required.', () =>
+    hasErrors({ reqRules: { name: 'required' } }).then(res => {
+      expect(res.name).toBe('The name field is required.');
+    }));
+
   test('should return The age must be a number', () =>
     hasErrors({
       data: { age: '21' },
@@ -19,8 +24,11 @@ describe('hasErrors', () => {
       expect(res.age).toBe('The age must be a number.');
     }));
 
-  test('should return The name field is required.', () =>
-    hasErrors({ reqRules: { name: 'required' } }).then(res => {
-      expect(res.name).toBe('The name field is required.');
+  test('should return The age must be a number', () =>
+    hasErrors({
+      data: { age: 21 },
+      reqRules: { age: 'number' },
+    }).then(res => {
+      expect(res).toBe(false);
     }));
 });
