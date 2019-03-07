@@ -1,22 +1,22 @@
 const uuid = require('../../src/validators/uuid');
 
 describe('date-validator', () => {
-  test('should return The undefined is not a validUUID.', () => {
-    expect(uuid()).toBe('The undefined is not a validUUID.');
+  test('should return The undefined is not a valid UUID.', () => {
+    expect(uuid()).toBe('The undefined is not a valid UUID.');
   });
 
-  test('should return The userId is not a validUUID.', () => {
+  test('should return The userId is not a valid UUID.', () => {
     expect(uuid({
         value: 'date',
         label: 'userId',
-      }),).toBe('The userId is not a validUUID.');
+      }),).toBe('The userId is not a valid UUID.');
   });
 
-  test('should return The userId is not a validUUID.', () => {
+  test('should return The userId is not a valid UUID.', () => {
     expect(uuid({
         value: 21,
         label: 'userId',
-      }),).toBe('The userId is not a validUUID.');
+      }),).toBe('The userId is not a valid UUID.');
   });
 
   test('should return false', () => {
