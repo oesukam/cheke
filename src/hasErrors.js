@@ -26,7 +26,7 @@ const hasErrors = ({ data = {}, reqRules } = {}) =>
         const failed = validators[rule]({
           value: data[key],
           label: key,
-          maxOrMin: number,
+          valid: number,
         });
         if (failed) resolve({ [key]: failed });
       });
