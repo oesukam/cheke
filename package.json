@@ -1,18 +1,35 @@
 {
   "name": "cheke",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Express request validator with object's style response body",
+  "author": "Olivier Esuka <oesukan@gmail.com> (https://oesukam.me)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oesukam/cheke.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oesukam/cheke/issues"
+  },
+  "homepage": "https://github.com/oesukam/cheke#readme",
+  "main": "lib/index.js",
   "scripts": {
     "test": "jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "lint": "node_modules/.bin/eslint .",
-    "lint:fix": "prettier-eslint --write '**/*.js'"
+    "lint:fix": "prettier-eslint --write '**/*.js'",
+    "build": "jest && eslint . ./ && minify src -d lib"
   },
-  "keywords": [],
-  "author": "Olivier Esuka <olivier.esuka@andela.com> (https://oesukam.me)",
-  "license": "ISC",
+  "keywords": [
+    "cheke",
+    "check",
+    "validator",
+    "validation",
+    "express",
+    "request"
+  ],
   "devDependencies": {
+    "babel-minify": "^0.5.0",
     "coveralls": "^3.0.3",
     "eslint": "^4.18.2",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -23,7 +40,5 @@
     "prettier": "^1.16.4",
     "prettier-eslint-cli": "^4.7.1"
   },
-  "dependencies": {
-    "validator": "^10.11.0"
-  }
+  "dependencies": {}
 }
