@@ -1,35 +1,28 @@
-const integer = require('../../src/validators/integer');
+const array = require('../../src/validators/array');
 
 describe('integer-validator', () => {
-  test('should return The undefined must be an integer.', () => {
-    expect(integer()).toBe('The undefined must be an integer.');
+  test('should return `undefined must be an array.`', () => {
+    expect(array()).toBe('undefined must be an array.');
   });
 
-  test('should return The age must be an integer.', () => {
-    expect(integer({
-        value: 'not an integer',
-        label: 'age',
-      }),).toBe('The age must be an integer.');
+  test('should return `users must be an array.`', () => {
+    expect(array({
+        value: 'not an array',
+        label: 'users',
+      }),).toBe('users must be an array.');
   });
 
-  test('should return The age must be an integer.', () => {
-    expect(integer({
-        value: '21',
-        label: 'age',
-      }),).toBe('The age must be an integer.');
-  });
-
-  test('should return The age must be an integer.', () => {
-    expect(integer({
-        value: 25.5,
-        label: 'age',
-      }),).toBe('The age must be an integer.');
+  test('should return `users must be an array.`', () => {
+    expect(array({
+        value: {},
+        label: 'users',
+      }),).toBe('users must be an array.');
   });
 
   test('should return false', () => {
-    expect(integer({
-        value: 21,
-        label: 'age',
+    expect(array({
+        value: [],
+        label: 'users',
       }),).toBe(false);
   });
 });
