@@ -21,6 +21,22 @@ describe('number-validator', () => {
 
   test('should return false', () => {
     expect(number({
+        value: '21p',
+        label: 'age',
+        path: 'query',
+      }),).toBe('The age must be a number.');
+  });
+
+  test('should return false', () => {
+    expect(number({
+        value: '21',
+        label: 'age',
+        path: 'params',
+      }),).toBe(false);
+  });
+
+  test('should return false', () => {
+    expect(number({
         value: 21,
         label: 'age',
       }),).toBe(false);
