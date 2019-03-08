@@ -9,7 +9,7 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
       if (!reqRules[key]) reject(Error(`${key}'s rule can not be empty`));
       const rules = reqRules[key].split('|').map(rule => rule.trim());
       Object.keys(rules).forEach(k => {
-        const [rule, number] = rules[k].split(':');
+        const [rule, valid] = rules[k].split(':');
         if (valids.indexOf(rule) === -1) {
           resolve({ [key]: { path, message: `${rule} rule does not exist` } });
         }
@@ -20,7 +20,7 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
               message: validators.required({
                 value: data[key],
                 label: key,
-                max: number,
+                valid,
               }),
             },
           });
@@ -29,7 +29,7 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
         const failed = validators[rule]({
           value: data[key],
           label: key,
-          valid: number,
+          valid,
         });
         if (failed) resolve({ [key]: { path, message: failed } });
       });
