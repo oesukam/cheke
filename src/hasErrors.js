@@ -3,6 +3,13 @@ const notAllowedMessage = require('./messages/notAllowedMessage');
 
 const valids = Object.keys(validators);
 
+/**
+ *
+ * @param {Object} data
+ * @param {Object} reqRules - User validation rules
+ * @param {String} path - Tha path of the request to be validated
+ * @returns {Promise} - Success or failed object
+ */
 const hasErrors = ({ data = {}, reqRules, path } = {}) =>
   new Promise((resolve, reject) => {
     if (!reqRules) resolve(false);
@@ -41,6 +48,7 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
           value: data[key],
           label: key,
           valid,
+          path,
         });
         if (failed) resolve({ [key]: { path, message: failed } });
       });
