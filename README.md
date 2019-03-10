@@ -48,7 +48,7 @@
   ```
    app.get('/validate-params/:id', cheke({
      params: {
-       id: 'required|string'
+       id: 'required|uuid'
      }
    }),(req, res) => {
      return res.send({ message: 'Validated' });
@@ -111,3 +111,9 @@ Should it happen that the tool broke down on you please head to our [Issue track
 
 1. Search if the issue is already discussed or explained.
 2. If no luck feel free to open a new issue and we will get back to you as soon as possible.
+
+## Acknowledgments
+
+- Alpha Ogilo [Ogilo](https://github.com/Ogilo)
+- Grace Njoki Kimotho [kimotho-njoki](https://github.com/kimotho-njoki)
+- Rene Christian Nshogoza [filschristian](https://github.com/filschristian)
