@@ -7,6 +7,16 @@ describe('hasErrors', () => {
     }));
 
   test("should return name's rule can not be empty", () =>
+    hasErrors({ reqRules: { name: {} } }).catch(err => {
+      expect(err.message).toBe("name's rule can not be empty");
+    }));
+
+  test("should return name's rule can not be empty", () =>
+    hasErrors({ reqRules: { name: { type: '' } } }).catch(err => {
+      expect(err.message).toBe("name's rule can not be empty");
+    }));
+
+  test("should return name's rule can not be empty", () =>
     hasErrors({ reqRules: { name: '' } }).catch(err => {
       expect(err.message).toBe("name's rule can not be empty");
     }));

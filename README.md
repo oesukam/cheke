@@ -2,9 +2,11 @@
 
 ---
 
+[![npm version](https://badge.fury.io/js/cheke.svg)](https://badge.fury.io/js/cheke)
 [![Build Status](https://travis-ci.org/oesukam/cheke.svg?branch=master)](https://travis-ci.org/oesukam/cheke)
 [![Coverage Status](https://coveralls.io/repos/github/oesukam/cheke/badge.svg?branch=master)](https://coveralls.io/github/oesukam/cheke?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f0f25d4e5bc5182f32a5/maintainability)](https://codeclimate.com/github/oesukam/cheke/maintainability)
+[![Known Vulnerabilities](https://snyk.io/test/github/oesukam/cheke/badge.svg?targetFile=package.json)](https://snyk.io/test/github/oesukam/cheke?targetFile=package.json)
 
 ## How to install
 
@@ -56,7 +58,7 @@
   ```
 - body -> `POST /validate-body`
   ```
-   app.get('/validate-body', cheke({
+   app.post('/validate-body', cheke({
      body: {
        username: 'required|string|min:6'
        password: 'required|string|min:6'

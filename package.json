@@ -1,6 +1,6 @@
 {
   "name": "cheke",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Express request validator with object's style response body",
   "author": "Olivier Esuka <oesukan@gmail.com> (https://oesukam.me)",
   "license": "MIT",
