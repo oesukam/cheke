@@ -1,5 +1,6 @@
 const validators = require('./validators');
 const notAllowedMessage = require('./messages/notAllowedMessage');
+const { getRules } = require('./helpers');
 
 const valids = Object.keys(validators);
 
@@ -15,7 +16,10 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
     if (!reqRules) resolve(false);
     const dataRules = { ...data, ...reqRules };
     Object.keys(dataRules).forEach(key => {
-      if (reqRules[key] === undefined) {
+      if (
+        reqRules[key] === undefined ||
+        (typeof reqRules[key] === 'object' && reqRules[key].type === undefined)
+      ) {
         resolve({
           [key]: {
             path,
@@ -23,10 +27,10 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
           },
         });
       }
-      if (!reqRules[key] && reqRules[key] !== undefined) {
+      if (!reqRules[key] || (typeof reqRules[key] === 'object' && !reqRules[key].type)) {
         reject(Error(`${key}'s rule can not be empty`));
       }
-      const rules = reqRules[key].split('|').map(rule => rule.trim());
+      const rules = getRules(reqRules[key]);
       Object.keys(rules).forEach(k => {
         const [rule, valid] = rules[k].split(':');
         if (valids.indexOf(rule) === -1) {
