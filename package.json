@@ -1,7 +1,7 @@
 {
   "name": "cheke",
   "version": "1.0.1",
-  "description": "Express request validator with object's style response body",
+  "description": "Express request validator with object's style response body and inspired by Laravel's Validator",
   "author": "Olivier Esuka <oesukan@gmail.com> (https://oesukam.me)",
   "license": "MIT",
   "repository": {
