@@ -8,6 +8,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f0f25d4e5bc5182f32a5/maintainability)](https://codeclimate.com/github/oesukam/cheke/maintainability)
 [![Known Vulnerabilities](https://snyk.io/test/github/oesukam/cheke/badge.svg?targetFile=package.json)](https://snyk.io/test/github/oesukam/cheke?targetFile=package.json)
 
+Express request validator with object's style response body and inspired by Laravel's Validator
+
 ## How to install
 
 ```
@@ -38,9 +40,17 @@
 - query -> `GET /validate-query?page=pageNumber`
   ```
    app.get('/validate-query', cheke({
-     body: {
-       username: 'required|string|min:6'
-       password: 'required|string|min:6'
+     query: {
+       pageNumber: 'required|number|min:1',
+     }
+   }),(req, res) => {
+     return res.send({ message: 'Validated' });
+   });
+  ```
+  ```
+   app.get('/validate-query', cheke({
+     query: {
+       pageNumber: { label: 'Page', type: 'required|number|min:1' },
      }
    }),(req, res) => {
      return res.send({ message: 'Validated' });
@@ -56,12 +66,31 @@
      return res.send({ message: 'Validated' });
    });
   ```
+  ```
+   app.get('/validate-params/:id', cheke({
+     params: {
+       id: { label: 'ID', type: 'required|uuid' }
+     }
+   }),(req, res) => {
+     return res.send({ message: 'Validated' });
+   });
+  ```
 - body -> `POST /validate-body`
   ```
    app.post('/validate-body', cheke({
      body: {
-       username: 'required|string|min:6'
+       username: 'required|string|min:6',
        password: 'required|string|min:6'
+     }
+   }),(req, res) => {
+     return res.send({ message: 'Validated' });
+   });
+  ```
+  ```
+   app.post('/validate-body', cheke({
+     body: {
+       username: { label: 'Username', type: 'required|string|min:6' },
+       password: { label: 'Password', type: 'required|string|min:6' }
      }
    }),(req, res) => {
      return res.send({ message: 'Validated' });

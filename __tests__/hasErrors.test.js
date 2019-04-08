@@ -49,4 +49,11 @@ describe('hasErrors', () => {
     }).then(res => {
       expect(res).toBe(false);
     }));
+
+  describe('object rules', () => {
+    test('should return The name field is required.', () =>
+      hasErrors({ reqRules: { name: { label: 'Name', type: 'required' } } }).then(res => {
+        expect(res.name.message).toBe('The Name field is required.');
+      }));
+  });
 });

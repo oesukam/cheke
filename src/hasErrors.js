@@ -42,7 +42,7 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
               path,
               message: validators.required({
                 value: data[key],
-                label: key,
+                label: typeof reqRules[key] === 'object' ? reqRules[key].label : key,
               }),
             },
           });
@@ -50,9 +50,10 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
 
         const failed = validators[rule]({
           value: data[key],
-          label: key,
+          label: typeof reqRules[key] === 'object' ? reqRules[key].label : key,
           valid,
           path,
+          isNumber: rules.indexOf('number') || rules.indexOf('integer'),
         });
         if (failed) resolve({ [key]: { path, message: failed } });
       });
