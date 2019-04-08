@@ -27,6 +27,7 @@
     "validator",
     "validation",
     "express",
+    "express-validator",
     "request"
   ],
   "devDependencies": {
