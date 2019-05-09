@@ -32,10 +32,12 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
       const rules = getRules(reqRules[key]);
       Object.keys(rules).forEach(k => {
         const [rule, valid] = rules[k].split(':');
+
         if (valids.indexOf(rule) === -1) {
           resolve({ [key]: { path, message: `${rule} rule does not exist` } });
         }
-        if (!data[key] && rules.indexOf('required') !== -1) {
+
+        if (typeof data[key] === 'undefined' && rules.indexOf('required') !== -1) {
           resolve({
             [key]: {
               path,
@@ -47,6 +49,8 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
           });
         }
 
+        if (typeof data[key] === 'undefined') resolve(false);
+
         if (typeof data[key] !== 'undefined') {
           const failed = validators[rule]({
             value: data[key],
@@ -54,6 +58,7 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
             valid,
             path,
             isNumber: rules.indexOf('number') || rules.indexOf('integer'),
+            isRequired: rules.indexOf('required') !== -1,
           });
           if (failed) resolve({ [key]: { path, message: failed } });
         }
