@@ -47,14 +47,16 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
           });
         }
 
-        const failed = validators[rule]({
-          value: data[key],
-          label: typeof reqRules[key] === 'object' ? reqRules[key].label : key,
-          valid,
-          path,
-          isNumber: rules.indexOf('number') || rules.indexOf('integer'),
-        });
-        if (failed) resolve({ [key]: { path, message: failed } });
+        if (typeof data[key] !== 'undefined') {
+          const failed = validators[rule]({
+            value: data[key],
+            label: typeof reqRules[key] === 'object' ? reqRules[key].label : key,
+            valid,
+            path,
+            isNumber: rules.indexOf('number') || rules.indexOf('integer'),
+          });
+          if (failed) resolve({ [key]: { path, message: failed } });
+        }
       });
     });
     resolve(false);
