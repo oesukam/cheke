@@ -43,7 +43,7 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
               path,
               message: validators.required({
                 value: data[key],
-                label: typeof reqRules[key] === 'object' ? reqRules[key].label : key,
+                label: typeof reqRules[key] === 'object' ? reqRules[key].label || key : key,
               }),
             },
           });
@@ -54,7 +54,7 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
         if (typeof data[key] !== 'undefined') {
           const failed = validators[rule]({
             value: data[key],
-            label: typeof reqRules[key] === 'object' ? reqRules[key].label : key,
+            label: typeof reqRules[key] === 'object' ? reqRules[key].label || key : key,
             valid,
             path,
             isNumber: rules.indexOf('number') || rules.indexOf('integer'),
