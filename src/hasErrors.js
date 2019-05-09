@@ -3,7 +3,6 @@ const notAllowedMessage = require('./messages/notAllowedMessage');
 const { getRules } = require('./helpers');
 
 const valids = Object.keys(validators);
-
 /**
  *
  * @param {Object} data
