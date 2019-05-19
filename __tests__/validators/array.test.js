@@ -1,6 +1,6 @@
 const array = require('../../src/validators/array');
 
-describe('integer-validator', () => {
+describe('array-validator', () => {
   test('should return `undefined must be an array.`', () => {
     expect(array()).toBe('undefined must be an array.');
   });

@@ -19,13 +19,6 @@ describe('string-validator', () => {
       }),).toBe('The username must be a string.');
   });
 
-  test('should return The username must be a string.', () => {
-    expect(string({
-        value: '   ',
-        label: 'username',
-      }),).toBe('The username must be a string.');
-  });
-
   test('should return false', () => {
     expect(string({
         value: 'username',

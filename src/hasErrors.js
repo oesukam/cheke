@@ -3,7 +3,6 @@ const notAllowedMessage = require('./messages/notAllowedMessage');
 const { getRules } = require('./helpers');
 
 const valids = Object.keys(validators);
-
 /**
  *
  * @param {Object} data
@@ -33,29 +32,36 @@ const hasErrors = ({ data = {}, reqRules, path } = {}) =>
       const rules = getRules(reqRules[key]);
       Object.keys(rules).forEach(k => {
         const [rule, valid] = rules[k].split(':');
+
         if (valids.indexOf(rule) === -1) {
           resolve({ [key]: { path, message: `${rule} rule does not exist` } });
         }
-        if (!data[key] && rules.indexOf('required') !== -1) {
+
+        if (typeof data[key] === 'undefined' && rules.indexOf('required') !== -1) {
           resolve({
             [key]: {
               path,
               message: validators.required({
                 value: data[key],
-                label: typeof reqRules[key] === 'object' ? reqRules[key].label : key,
+                label: typeof reqRules[key] === 'object' ? reqRules[key].label || key : key,
               }),
             },
           });
         }
 
-        const failed = validators[rule]({
-          value: data[key],
-          label: typeof reqRules[key] === 'object' ? reqRules[key].label : key,
-          valid,
-          path,
-          isNumber: rules.indexOf('number') || rules.indexOf('integer'),
-        });
-        if (failed) resolve({ [key]: { path, message: failed } });
+        if (typeof data[key] === 'undefined') resolve(false);
+
+        if (typeof data[key] !== 'undefined') {
+          const failed = validators[rule]({
+            value: data[key],
+            label: typeof reqRules[key] === 'object' ? reqRules[key].label || key : key,
+            valid,
+            path,
+            isNumber: rules.indexOf('number') || rules.indexOf('integer'),
+            isRequired: rules.indexOf('required') !== -1,
+          });
+          if (failed) resolve({ [key]: { path, message: failed } });
+        }
       });
     });
     resolve(false);

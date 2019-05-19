@@ -34,6 +34,7 @@ Express request validator with object's style response body and inspired by Lara
 1. Required: `required`
 1. String: `string`, `string|min:200`, `string|max:200`
 1. UUID: `uuid`
+1. Object: `object`
 
 #### Types of validation
 
